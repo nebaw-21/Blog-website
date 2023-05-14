@@ -9,7 +9,6 @@ body{
 
 }
 
-
 .clearfix::after{
     content: '';
     display: block;
@@ -39,9 +38,6 @@ border: 1px solid transparent;
     background: red;
 }
 
-
-
-
 input{
     padding: 10px 10px;
     border-radius: 5px;
@@ -49,7 +45,9 @@ input{
 }
 
 header{
-    background: #008489;
+    background: #16222A;
+    background: -webkit-linear-gradient(59deg, #3A6073, #16222A);
+    background: linear-gradient(59deg, #3A6073, #16222A);
     height: 66px; 
 }
 
@@ -69,7 +67,7 @@ header .logo-text{
 }
 
 header .logo-text span{
-    color: #3fe2e8;
+    color: #5bd8dc;
 }
 
 header ul {
@@ -111,7 +109,7 @@ header ul li ul a.logout{
 }
 
 header ul li ul a:hover{
-    background: #81a0a0;;
+    background: #023333;;
 }
 
 header ul li a {
@@ -123,7 +121,7 @@ header ul li a {
 }
 
 header ul li a:hover {
-    background: #1f585a; 
+    background:  #000000; 
     transition: 0.5s;
 }
 
@@ -283,35 +281,7 @@ overflow-y:auto;
     font-size: 1.1rem;
 }
 
-/*Footer*/
 
-.footer{
-    background: #81a0a0;
-    color: white;
-    height: 300px;
-    position: relative;
-}
-
-.footer .footer-content{
-    display: grid;
-
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
-    grid-gap: 30px;
-
-
-}
-.footer .footer-buttom{
-    position: absolute;
-    background: #1f585a;
-    color: #81a0a0;
-    height: 50px;
-    width: 100%;
-    text-align: center;
-    bottom: 0px;
-    left: 0;
-    padding-top: 20px;
-}
 
 /*  Media queries*/
 
@@ -321,7 +291,9 @@ header{
 }
     header ul {
     width: 100%;
-    background-color:#1f585a ;
+    background: #16222A;
+    background: -webkit-linear-gradient(59deg, #3A6073, #16222A);
+    background: linear-gradient(59deg, #3A6073, #16222A);
     max-height: 0px;
     overflow: hidden;
     }

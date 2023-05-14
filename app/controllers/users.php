@@ -36,7 +36,7 @@ $admin_users = selectAll($table );
     
     if(isset($_POST['register-btn']) || isset($_POST['create_admin'])){
         
-        $id = $_POST['id'];
+        @$id = $_POST['id'];
         
         $email_already = selectOne($table, ['email' => $_POST["email"]]);
     
@@ -218,6 +218,6 @@ elseif($_POST["password"] !== $_POST["confirmPassword"]){
    
 
 
-
-
 ?>
+
+

@@ -42,9 +42,9 @@ if(isset($_POST['comment_button'])){
 
     <!--font Awsome-->
     <link rel="stylesheet" href="asset/css/comment.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="asset/css/style.css?v2">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 <body>
 
@@ -125,10 +125,6 @@ if(isset($_POST['comment_button'])){
 
     <?php endforeach; ?>  
 <!-- end of comment section  -->
-
-
-
-
 <!--<div>
     <p>some functionality that will be included in this project!</p>
 <ul>
@@ -138,7 +134,7 @@ if(isset($_POST['comment_button'])){
     <li>add video</li>
     <li>related post</li>
     <li>make contact us functional</li>
-    <li>finish the project within 10 days.  5/30/2023</li>
+    <li>finish the project within 20 days.  5/30/2023</li>
 
 </ul>
 

@@ -4,7 +4,13 @@ $(document).ready(function(){
  $('.nav .un').toggleClass('showing');
     });
  });
- 
+ $('.post-wrapper').slick({
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+  })
+
  
   ClassicEditor.create( document.querySelector( '#x' ), {
          toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
@@ -22,3 +28,4 @@ $(document).ready(function(){
          console.log( error );
      } );
  
+     
