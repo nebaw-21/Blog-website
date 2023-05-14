@@ -141,6 +141,19 @@ $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 return $records;
 }
 
+
+function getNumberOfLikes( $post_id){
+
+    global $conn;
+    $sql = "SELECT COUNT(*) as count FROM like_table WHERE post_id =? "; 
+    
+    $stmt = executeQuery2($sql , ['post_id' => $post_id] );
+$records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+return $records;
+}
+
+
+
 function  getTopicId ($topic_id){
     global $conn;
     $sql = "SELECT p.* ,u.username FROM post AS p JOIN user AS u ON p.user_id=u.id WHERE p.published=? AND topic_id=?";

@@ -4,7 +4,7 @@
  
  adminOnly();
 
- $posts = getPublishedPost();
+ //$posts = getPublishedPost();
 
 ?>
 

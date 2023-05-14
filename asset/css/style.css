@@ -9,6 +9,8 @@ body{
 
 }
 
+
+
 .clearfix::after{
     content: '';
     display: block;
@@ -22,6 +24,7 @@ border: 1px solid transparent;
     background: #1f585a;
     border-radius: 10px;
 }
+
 
 .msgs{
     width: 100%;
@@ -43,6 +46,12 @@ input{
     border-radius: 5px;
     
 }
+
+
+.comment_input{
+
+}
+
 
 header{
     background: #16222A;

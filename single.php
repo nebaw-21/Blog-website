@@ -1,9 +1,12 @@
 <?php  include('C:/xampp/htdocs/Blog/app/controllers/post.php'); 
     $comment_table = 'commet';
+    $like_table = 'like_table';
+
     $posts = selectAll2('post' , ['published' => 1]);
     
     if(isset($_GET['title_id'])){
         
+
         $post = selectOne2('post' , ['id'=> $_GET['title_id']]);
         $_SESSION['body'] = $post['body'];
         $_SESSION['title'] = $post['title'];
@@ -28,8 +31,25 @@ if(isset($_POST['comment_button'])){
         }else{
             header('Location: index.php');
         }
-    
 }
+
+
+if(isset($_POST['like_button'])){
+    $_POST['user_id'] = $_SESSION['id'];//from login user
+    $_POST['post_id'] = $_SESSION['post_id'];
+    unset($_POST['like_button']);
+    $like_already = selectOne2($like_table, ['user_id' =>   $_POST['user_id']]);
+
+if(!isset($like_already)){
+    
+            $like_id  = create2($like_table , $_POST);
+            header('Location: single.php'); 
+        }
+          
+    }
+    $number_of_likes = getNumberOfLikes( $_POST['post_id'] );
+
+
     
 ?>
 <!DOCTYPE html>
@@ -62,7 +82,20 @@ if(isset($_POST['comment_button'])){
    <h1 class="post-title"><?php echo $_SESSION['title'] ?></h1>
    <div class="post-content">
     <p><?php echo html_entity_decode($_SESSION['body']) ?></p>
-                                       
+
+    
+      <form action="single.php" method="POST">
+      <input type="hidden" name="like_button"> 
+      <i class="fa fa-eye">23 &nbsp</i>
+      <button  class="border-0" type="submit" name="like_button">  <i class="fa fa-thumbs-up">
+        <?php foreach($number_of_likes as $number_of_like): ?>
+            <?php echo $number_of_like['count'] ?>
+         
+        <?php endforeach ?>
+        </i> </button>                          
+      </form> 
+    
+
         </div>
        </div>
 
@@ -88,20 +121,23 @@ if(isset($_POST['comment_button'])){
 </div>
 
 
+
 <form action="single.php" method="POST">
 
-<input type="text" name="comment_section" placeholder="comment if you want">
-<button name="comment_button">SEND</button>
-
-
+<div class="d-flex flex-row add-comment-section mt-4 mb-4">
+<input type="text" name="comment_section" placeholder="Add comment"  class="form-control mr-3" >
+<button name="comment_button" type="submit" class= "btn btn-primary">COMMENT</button>
+</div>
 </form>
+
+
 
 <!-- start of comment section  -->
 <div class="container bootstrap snippets bootdey">
     <div class="row">
         <div class="col-md-12">
             <div class="blog-comment">
-                <h3 class="text-success">Comments</h3>
+                <h3 class="text-success"> <span class="mr-2 comments">13 comments&nbsp;</span></h3>
 
                 <?php foreach( $comment_posts as  $comment_post): ?>
                 <hr/>
