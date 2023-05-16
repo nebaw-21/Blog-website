@@ -27,6 +27,7 @@ $topics = selectAll2('topics');
 
     <!--font Awsome-->
     <link rel="stylesheet" href="asset/css/style.css?v=2">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -40,6 +41,7 @@ $topics = selectAll2('topics');
         
 
         <h1 class="slider-title">Trending Posts</h1>
+        
 
         <div class="post-wrapper">
 
@@ -122,8 +124,9 @@ $topics = selectAll2('topics');
 <!-- include footer part -->
 <?php include("app/include/footer.php"); ?>
 
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.slim.min.js" integrity="sha512-fYjSocDD6ctuQ1QGIo9+Nn9Oc4mfau2IiE8Ki1FyMV4OcESUt81FMqmhsZe9zWZ6g6NdczrEMAos1GlLLAipWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 
 <script src="asset/js/script.js"></script>
 
