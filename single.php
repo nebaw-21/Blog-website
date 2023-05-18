@@ -1,6 +1,7 @@
 <?php  include('C:/xampp/htdocs/Blog/app/controllers/post.php'); 
     $comment_table = 'commet';
     $like_table = 'like_table';
+    $view_table = 'view_count';
 
     $posts = selectAll2('post' , ['published' => 1]);
     
@@ -11,6 +12,10 @@
         $_SESSION['body'] = $post['body'];
         $_SESSION['title'] = $post['title'];
         $_SESSION['post_id'] = $post['id'];
+        $_POST['post_id'] = $_SESSION['post_id'];//for count views
+
+        $view_id  = create2($view_table, $_POST);
+        header('Location: single.php'); 
      
 }
 $comment_posts = getUserNameForComment($_SESSION['post_id'] );
@@ -38,7 +43,9 @@ if(isset($_POST['like_button'])){
     $_POST['user_id'] = $_SESSION['id'];//from login user
     $_POST['post_id'] = $_SESSION['post_id'];
     unset($_POST['like_button']);
-    $like_already = selectOne2($like_table, ['user_id' =>   $_POST['user_id']]);
+
+    $like_already = selectOne2($like_table, ['user_id' =>   $_POST['user_id'] , 'post_id' => $_POST['post_id'] ]);
+    //$like_already2 = selectOne2($like_table, ['post_id' =>   $_POST['post_id']]);
 
 if(!isset($like_already)){
     
@@ -47,7 +54,12 @@ if(!isset($like_already)){
         }
           
     }
-    $number_of_likes = getNumberOfLikes( $_POST['post_id'] );
+
+
+    @$number_of_likes = getNumberOfLikes($_SESSION['post_id']);
+    @$number_of_views = getNumberOfViews($_SESSION['post_id']);
+    @$number_of_comments = getNumberOfComments($_SESSION['post_id']);
+    //dd2($number_of_views);
 
 
     
@@ -86,7 +98,13 @@ if(!isset($like_already)){
     
       <form action="single.php" method="POST">
       <input type="hidden" name="like_button"> 
-      <i class="fa fa-eye">23 &nbsp</i>
+      <i class="fa fa-eye">
+
+        <?php foreach($number_of_views as $number_of_view): ?>
+            <?php echo $number_of_view['count']?>
+         
+        <?php endforeach ?> &nbsp</i>
+
       <button  class="border-0" type="submit" name="like_button">  <i class="fa fa-thumbs-up">
         <?php foreach($number_of_likes as $number_of_like): ?>
             <?php echo $number_of_like['count'] ?>
@@ -137,7 +155,11 @@ if(!isset($like_already)){
     <div class="row">
         <div class="col-md-12">
             <div class="blog-comment">
-                <h3 class="text-success"> <span class="mr-2 comments">13 comments&nbsp;</span></h3>
+                <h3 class="text-success"> <span class="mr-2 comments">
+                <?php foreach($number_of_comments as $number_of_comment): ?>
+               <?php echo $number_of_comment['count']?>
+         
+                 <?php endforeach ?>COMMENTS &nbsp;</span></h3>
 
                 <?php foreach( $comment_posts as  $comment_post): ?>
                 <hr/>
@@ -164,8 +186,7 @@ if(!isset($like_already)){
 <!--<div>
     <p>some functionality that will be included in this project!</p>
 <ul>
-    <li>comment, like and share</li>
-    <li>how many user are look the post</li>
+ 
     <li>most viseted posts</li>
     <li>add video</li>
     <li>related post</li>

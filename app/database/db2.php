@@ -152,6 +152,24 @@ $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 return $records;
 }
 
+function getNumberOfViews( $post_id){
+
+    global $conn;
+    $sql = "SELECT COUNT(*) as count FROM view_count WHERE post_id =? "; 
+    
+    $stmt = executeQuery2($sql , ['post_id' => $post_id] );
+$records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+return $records;
+}
+
+function getNumberOfComments($post_id){
+
+    global $conn;
+    $sql = "SELECT COUNT(*) as count FROM commet WHERE post_id =? "; 
+ $stmt = executeQuery2($sql , ['post_id' => $post_id] );
+$records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+return $records;
+}
 
 
 function  getTopicId ($topic_id){
@@ -173,6 +191,8 @@ function   getUserNameForComment($post_id){
 $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 return $records;
 }
+
+
 
 
 function  searchPost($term){
