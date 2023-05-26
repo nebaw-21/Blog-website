@@ -131,14 +131,31 @@ return $stmt->affected_rows;
 
 
 }
-
 function  getPublishedPost(){
     global $conn;
-    $sql = "SELECT p.* ,u.username FROM post AS p JOIN user AS u ON p.user_id=u.id WHERE p.published=? ";
+    $sql = "SELECT p.*, u.username 
+    FROM post AS p 
+    JOIN user AS u ON p.user_id = u.id 
+    WHERE p.published = ? AND p.created_at >= DATE_SUB(NOW(), INTERVAL 2 DAY); ";
     
     $stmt = executeQuery2($sql , ['published' => 1] );
 $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 return $records;
+}
+
+function  getMostNumberOfPublishedPost(){
+    global $conn;
+    $sql = "SELECT post.*, user.username, view_count.NumberOfViews
+    FROM post
+    INNER JOIN user ON post.user_id = user.id 
+    INNER JOIN view_count ON post.id = view_count.post_id
+    WHERE post.published = ?
+    ORDER BY view_count.NumberOfViews DESC LIMIT 3;";
+
+    $stmt = executeQuery2($sql , ['published' => 1] );
+$records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+return $records;
+
 }
 
 
@@ -155,7 +172,7 @@ return $records;
 function getNumberOfViews( $post_id){
 
     global $conn;
-    $sql = "SELECT COUNT(*) as count FROM view_count WHERE post_id =? "; 
+    $sql = "SELECT NumberOfViews FROM view_count WHERE post_id =? "; 
     
     $stmt = executeQuery2($sql , ['post_id' => $post_id] );
 $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -191,9 +208,6 @@ function   getUserNameForComment($post_id){
 $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 return $records;
 }
-
-
-
 
 function  searchPost($term){
 

@@ -1,21 +1,50 @@
 <?php  include('C:/xampp/htdocs/Blog/app/controllers/post.php'); 
+    $relatedPosts = array();
     $comment_table = 'commet';
     $like_table = 'like_table';
     $view_table = 'view_count';
 
     $posts = selectAll2('post' , ['published' => 1]);
-    
-    if(isset($_GET['title_id'])){
-        
 
-        $post = selectOne2('post' , ['id'=> $_GET['title_id']]);
+    if(isset($_REQUEST['topic_id'])){
+
+        $topic_id = $_REQUEST['topic_id'];
+        //dd2($topic_id);
+    
+        $relatedPosts = selectAll2('post' , ['published' => 1 , 'topic_id' =>   $topic_id ]);
+
+        //dd2( $relatedPosts);
+    }
+    
+    if(isset($_REQUEST['title_id'])){
+        
+        $post = selectOne2('post' , ['id'=> $_REQUEST['title_id']]);
+     
         $_SESSION['body'] = $post['body'];
         $_SESSION['title'] = $post['title'];
         $_SESSION['post_id'] = $post['id'];
-        $_POST['post_id'] = $_SESSION['post_id'];//for count views
 
-        $view_id  = create2($view_table, $_POST);
-        header('Location: single.php'); 
+
+    $_POST['post_id'] = $_SESSION['post_id'];//for count views
+    $view_count = selectOne2($view_table, ['post_id' => $_SESSION['post_id'] ]);
+
+    //dd2($_POST);
+
+if(empty($view_count['id']) ){
+    
+    $_POST['NumberOfViews'] = 1;//for count views
+    $view_id  = create2($view_table, $_POST);
+
+}else{
+
+    $NumberOfViews =  $view_count['NumberOfViews'] + 1 ;
+    $_POST['NumberOfViews'] = $NumberOfViews ;
+    $id = $view_count['id'];
+    $update_id  = update2($view_table, $id ,  $_POST);
+    //dd2($NumberOfViews);
+   
+}
+       
      
 }
 $comment_posts = getUserNameForComment($_SESSION['post_id'] );
@@ -23,15 +52,20 @@ $comment_posts = getUserNameForComment($_SESSION['post_id'] );
 
 if(isset($_POST['comment_button'])){
 
-    $_POST['post_id'] = $_SESSION['post_id'];
-    $_POST['user_id'] = $_SESSION['id'];//from login user
-    unset($_POST['comment_button']);
+    $_REQUEST['post_id'] = $_SESSION['post_id'];
+    $_REQUEST['user_id'] = $_SESSION['id'];//from login user
+    $topic_id=$_REQUEST['topic_id'];
+
+    unset($_REQUEST['topic_id']);
+    unset($_REQUEST['comment_button']);
   
     if(!empty($_POST['comment_section'])){
-        
+     
        
-            $comment_id  = create2($comment_table , $_POST);
-            header('Location: single.php'); 
+            $comment_id  = create2($comment_table , $_REQUEST);
+            header('Location: single.php?topic_id='. $topic_id
+        
+); 
     
         }else{
             header('Location: index.php');
@@ -40,17 +74,20 @@ if(isset($_POST['comment_button'])){
 
 
 if(isset($_POST['like_button'])){
+
     $_POST['user_id'] = $_SESSION['id'];//from login user
     $_POST['post_id'] = $_SESSION['post_id'];
+ 
     unset($_POST['like_button']);
+    unset($_POST['topic_id']);
 
     $like_already = selectOne2($like_table, ['user_id' =>   $_POST['user_id'] , 'post_id' => $_POST['post_id'] ]);
-    //$like_already2 = selectOne2($like_table, ['post_id' =>   $_POST['post_id']]);
+    $like_already2 = selectOne2($like_table, ['post_id' =>   $_POST['post_id']]);
 
 if(!isset($like_already)){
     
             $like_id  = create2($like_table , $_POST);
-            header('Location: single.php'); 
+           
         }
           
     }
@@ -97,11 +134,13 @@ if(!isset($like_already)){
 
     
       <form action="single.php" method="POST">
+        
+<input type="hidden" name="topic_id" value="<?php if(isset($_REQUEST['topic_id'])) echo $_REQUEST['topic_id'];else echo  $_POST['topic_id']  ?>">
       <input type="hidden" name="like_button"> 
       <i class="fa fa-eye">
 
         <?php foreach($number_of_views as $number_of_view): ?>
-            <?php echo $number_of_view['count']?>
+            <?php echo $number_of_view['NumberOfViews']?>
          
         <?php endforeach ?> &nbsp</i>
 
@@ -121,11 +160,13 @@ if(!isset($like_already)){
     <div class="sidebar single">
 
 <div class="section popular">
-    <h2 class="section-title">related post</h2>
-<?php  foreach($posts as $p):?>
+    <h2 class="section-title">RELATED POSTE</h2>
+
+<?php  foreach($relatedPosts as $relatedPos):?>
     <div class="post clearfix">
-        <img src=" <?php echo 'asset/image/'. $p['image']; ?>" alt="">
-        <a href="#" class="title"><?php echo $p['title'] ?></a>
+      
+        <img src=" <?php echo 'asset/image/'. $relatedPos['image']; ?>" alt="">
+        <a href="single.php?title_id=<?php echo $relatedPos['id'] .'&topic_id=' . $relatedPos['topic_id'] ;?>" class="title"><?php echo $relatedPos['title'] ?></a>
     </div>
 
 <?php endforeach;?>
@@ -136,12 +177,13 @@ if(!isset($like_already)){
     </div>
 
       <!--end of sidebars-->
+
 </div>
 
 
 
 <form action="single.php" method="POST">
-
+<input type="hidden" name="topic_id" value="<?php if(isset($_REQUEST['topic_id'])) echo $_REQUEST['topic_id'];else echo  $_POST['topic_id']  ?>">
 <div class="d-flex flex-row add-comment-section mt-4 mb-4">
 <input type="text" name="comment_section" placeholder="Add comment"  class="form-control mr-3" >
 <button name="comment_button" type="submit" class= "btn btn-primary">COMMENT</button>
@@ -182,25 +224,21 @@ if(!isset($like_already)){
     </div>
 
     <?php endforeach; ?>  
+
 <!-- end of comment section  -->
-<!--<div>
-    <p>some functionality that will be included in this project!</p>
-<ul>
- 
+
+<!--
+   
+
     <li>most viseted posts</li>
-    <li>add video</li>
-    <li>related post</li>
+
     <li>make contact us functional</li>
-    <li>finish the project within 20 days.  5/30/2023</li>
-
-</ul>
-
-</div> -->
+    
+ -->
 
 
 
 <!--start of footer part-->
-
 <?php include("app/include/footer.php"); ?>
 <!-- include footer part -->
 

@@ -1,4 +1,5 @@
 <?php  include('C:/xampp/htdocs/Blog/app/controllers/topic.php');
+
 $posts =array();
 $postsTitle = 'Recent Post';
 if(isset($_GET['topic_id'])){
@@ -13,8 +14,10 @@ elseif(isset($_POST['search-term'])){
     $posts = getPublishedPost();
 }
 
+$AllPosts = selectAll2('post');
 $topics = selectAll2('topics');
 
+$MostViewedPosts = getMostNumberOfPublishedPost();
 ?>
 
 <!DOCTYPE html>
@@ -38,60 +41,66 @@ $topics = selectAll2('topics');
 <!-- page wrapper -->
 <div class="page-wrapper">
     <div class="post-slider">
-        
 
         <h1 class="slider-title">Trending Posts</h1>
         
-
         <div class="post-wrapper">
 
-<!-- post section -->
- <?php foreach($posts as $post): ?>
+<!-- post slide section -->
+ <?php foreach($AllPosts as $AllPost): ?>
         
     <div class="post">
 
-<img src="<?php echo 'asset/image/'. $post['image']; ?> " alt="" class="slider-image">
+<img src="<?php echo 'asset/image/'. $AllPost['image']; ?> " alt="" class="slider-image">
 <div class="post-info">
-<h4><a href="single.php?title_id=<?php echo $post['id']; ?>"><?php echo $post['title'] ?></a></h4>
-<i class="fa fa-user"><?php echo $post['username'] ?></i>
+<h4><a href="single.php?title_id=<?php echo $AllPost['id'] .'&topic_id=' . $AllPost['topic_id'] ;?>"><?php echo $AllPost['title'] ?></a></h4>
+<i class="fa fa-user"><?php echo $AllPost['username'] ?></i>
 &nbsp;
-<i class="fa fa-calendar"><?php echo date('F j,Y', strtotime($post['created_at'])); ?></i>
+<i class="fa fa-calendar"><?php echo date('F j,Y', strtotime($AllPost['created_at'])); ?></i>
 </div>
      </div>
 
 <?php endforeach; ?>
-<!-- end of post section -->
+<!-- end of post slide section -->
 
  </div>
+
  </div>
 
 </div>
 
 <div class="content clearfix">
+    
+     <!--Recent post  -->
     <div class="main-content">
+
     <h1 class="recent-post-title"><?php echo $postsTitle ?></h1>
 
-    <!--post one -->
+   
 <?php foreach($posts as $post): ?>
 
     <div class="post">
         <img src="<?php echo 'asset/image/'. $post['image']; ?>" alt="" class="post-image">
     <div class="post-preview">
-        <h1><a href="single.php?title_id=<?php echo $post['id']; ?>"><?php echo $post['title'] ?> </a></h1>
+        <h1><a href="single.php?title_id=<?php echo $post['id'] .'&topic_id=' . $post['topic_id'] ;?>"><?php echo $post['title'] ?> </a></h1>
        <i class="fa fa-user"><?php echo $post['username'] ?></i>
         <br><br>
-        <i class="fa calander"><?php echo date('F j,Y', strtotime($post['created_at'])); ?></i>
+        <i class="fa calender"><?php echo date('F j,Y', strtotime($post['created_at'])); ?></i>
         <p class="preview-text"> <?php echo html_entity_decode(substr($post['body'],0,100).'...' ); ?></p>
 
-    <a href="single.php?title_id=<?php echo $post['id']; ?>" class="btn read-more">Read More</a>
+    <a href="single.php?title_id=<?php echo $post['id'] .'&topic_id=' . $post['topic_id'] ;?>" class="btn read-more">Read More</a>
     </div>
     </div>
 
 <?php endforeach; ?>
 
     </div>
+ <!--End of  Recent post  -->
 
-    <div class="sidebar">
+
+<!--sidebar -->
+
+<div class="sidebar">
 <div class="section search">
     <h2 class="section-title">search</h2>
 <form action="index.php" method="POST">
@@ -111,12 +120,41 @@ $topics = selectAll2('topics');
     <?php endforeach; ?>
 
     </ul>
-
-
 </div>
 
-
     </div>
+<!--End of sidebar -->
+
+
+
+
+     <!--Most viewed post  -->
+     <div class="main-content">
+
+<h1 class="recent-post-title">Most viewed Posts</h1>
+
+<?php foreach($MostViewedPosts as $MostViewedPost): ?>
+
+<div class="post">
+    <img src="<?php echo 'asset/image/'. $MostViewedPost['image']; ?>" alt="" class="post-image">
+<div class="post-preview">
+    <h1><a href="single.php?title_id=<?php echo $MostViewedPost['id'] .'&topic_id=' . $MostViewedPost['topic_id'] ;?>"><?php echo $MostViewedPost['title'] ?> </a></h1>
+   <i class="fa fa-user"><?php echo $MostViewedPost['username'] ?></i>
+    <br><br>
+    <i class="fa calender"><?php echo date('F j,Y', strtotime($MostViewedPost['created_at'])); ?></i>
+    <p class="preview-text"> <?php echo html_entity_decode(substr($MostViewedPost['body'],0,100).'...' ); ?></p>
+
+<a href="single.php?title_id=<?php echo $post['id'] .'&topic_id=' . $MostViewedPost['topic_id'] ;?>" class="btn read-more">Read More</a>
+</div>
+</div>
+
+<?php endforeach; ?>
+
+</div>
+<!--End of Most viewed post  -->
+
+
+
 </div>
 
 <!--start of footer part-->
