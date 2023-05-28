@@ -1,6 +1,7 @@
+<?php error_reporting(E_ERROR | E_PARSE); ?>
 
 <?php if (isset( $_SESSION['id'])):  ?>
-    
+     
 <div class="msgs <?php echo $_SESSION['type'] ?>" >
     <p > <?php echo ($_SESSION['message']) ?> </p>
 <?php 

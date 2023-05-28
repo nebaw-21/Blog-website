@@ -1,5 +1,7 @@
-<?php  include('C:/xampp/htdocs/Blog/app/controllers/topic.php');
+<?php  
+require('C:/xampp/htdocs/Blog/app/database/db2.php');
 
+session_write_close();
 $posts =array();
 $postsTitle = 'Recent Post';
 if(isset($_GET['topic_id'])){
@@ -14,7 +16,7 @@ elseif(isset($_POST['search-term'])){
     $posts = getPublishedPost();
 }
 
-$AllPosts = selectAll2('post');
+$AllPosts = getPublishedPost3();
 $topics = selectAll2('topics');
 
 $MostViewedPosts = getMostNumberOfPublishedPost();
@@ -37,6 +39,10 @@ $MostViewedPosts = getMostNumberOfPublishedPost();
 
 <!-- include header part -->
 <?php require_once("app/include/header.php");?>
+
+<?php include("app/include/message.php"); ?>
+
+
 
 <!-- page wrapper -->
 <div class="page-wrapper">
@@ -126,8 +132,6 @@ $MostViewedPosts = getMostNumberOfPublishedPost();
 <!--End of sidebar -->
 
 
-
-
      <!--Most viewed post  -->
      <div class="main-content">
 
@@ -152,8 +156,6 @@ $MostViewedPosts = getMostNumberOfPublishedPost();
 
 </div>
 <!--End of Most viewed post  -->
-
-
 
 </div>
 

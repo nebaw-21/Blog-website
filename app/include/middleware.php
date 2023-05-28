@@ -1,25 +1,26 @@
 <?php
-/*function userOnly(){ //use this functionality when comment is nessessary!
+function userOnly($redirect ='index.php'){ 
 if(empty($_SESSION['id'])){
+    header('location:'. $redirect );
     $_SESSION['message']='you need to login first';
     $_SESSION['type']='error';
-    header('location: ../../index.php');
         exit(0);
 }
 
-}*/
+}
 
-function adminOnly(){
-    if(empty($_SESSION['id']) || empty($_SESSION['admin'])){
-        $_SESSION['message']='you are not authorized';
+function adminOnly($redirect = '../../index.php'){
+    if(empty($_SESSION['id']) && empty($_SESSION['admin'])){
+        $_SESSION['message'] ='you are not authorized';
         $_SESSION['type']='error';
-        header('location: ../../index.php');
+       
+        header('location:'. $redirect );
         exit(0);
     }
     
     }
     function gustOnly(){
-        if(empty($_SESSION['id'])){
+        if(isset($_SESSION['id'])){
             header('location: ../../index.php');
             exit(0);
         }

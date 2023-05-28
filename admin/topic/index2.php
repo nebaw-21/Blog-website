@@ -1,6 +1,6 @@
 <?php
  include('C:/xampp/htdocs/Blog/app/controllers/topic.php');
- include("C:/xampp/htdocs/Blog/app/include/middleware.php"); 
+
  adminOnly();
 ?>
 <!DOCTYPE html>
@@ -45,7 +45,6 @@
     <thead>
         <th>N</th>
         <th>Name</th>
-        <th>Authosr</th>
         <th colspan="2">Action</th>
     </thead>
 <tbody>

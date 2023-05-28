@@ -15,14 +15,14 @@
 
 <header>
 <a class="logo"  href="<?php echo 'index.php' ?>">
-    <h1 class="logo-text"><span>Neba</span>news</h1>
+    <h1 class="logo-text"><span>Ajaib</span>news</h1>
 </a>
 
 <i class="fa fa-bars menu-toggle"></i>
 
 <ul class="nav">
-    <li><a href="">Home</a></li>
-    <li><a href="">About</a> </li>
+    <li><a href="index.php">Home</a></li>
+    <li><a href="contactUs.php">Contact Us</a> </li>
 
  
     <?php if (isset( $_SESSION['id'])): ?>

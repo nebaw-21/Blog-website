@@ -12,7 +12,7 @@
 
 <header>
 <a class="logo" href="<?php echo '../index.php' ?>">
-    <h1 class="logo-text"><span>Neba</span>news</h1>
+    <h1 class="logo-text"><span>Ajaib</span>news</h1>
 </a>
 
 <i class="fa fa-bars menu-toggle"></i>

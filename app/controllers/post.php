@@ -1,5 +1,6 @@
 <?php 
 require('C:/xampp/htdocs/Blog/app/database/db2.php');
+include("C:/xampp/htdocs/Blog/app/include/middleware.php"); 
 
 //include("C:/xampp/htdocs/Blog/app/include/middleware.php"); 
 $table = 'post';

@@ -143,6 +143,32 @@ $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 return $records;
 }
 
+function getPublishedPost2() {
+    global $conn;
+
+    $values = [0, 1];
+    $sql = "SELECT p.*, u.username FROM post AS p JOIN user AS u ON p.user_id = u.id WHERE p.published IN (?, ?)";
+    $stmt = executeQuery2($sql, $values);
+
+    $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    return $records;
+}
+
+function  getPublishedPost3(){
+    global $conn;
+    $sql = "SELECT p.*, u.username 
+    FROM post AS p 
+    JOIN user AS u ON p.user_id = u.id 
+    WHERE p.published = ? ";
+    
+    $stmt = executeQuery2($sql , ['published' => 1] );
+$records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+return $records;
+}
+
+
+
+
 function  getMostNumberOfPublishedPost(){
     global $conn;
     $sql = "SELECT post.*, user.username, view_count.NumberOfViews
