@@ -13,7 +13,7 @@
 
     <!--font Awsome-->
     <link rel="stylesheet" href="../../asset/css/style.css">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="../../asset/css/admin.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -35,31 +35,31 @@
 <!--admin content-->
 <div class="admin-content">
 <div class="button-group">
-    <a href="create.php" class="btn btn-big">Add topic</a>
-    <a href="index2.php" class="btn">Manage topic</a>
+    <a href="create.php" class="btn btn-primary">Add topic</a>
+    <a href="index2.php" class="btn btn-primary">Manage topic</a>
 </div>
  
 <div class="content">
-    <h2 class="page-title">Edit topics</h2>
+    <h2   class="h2 text-center text-primary font-weight-bold">Edit topics</h2>
 
 <form action="edit.php" method="post">
     
 <input name="id" type="hidden" value="<?php echo $id ?>">
 <div>
-    <label >Name</label><br>
+    <label class=" h4 text-primary font-weight-bold">Name</label><br>
     <input name="name" type="text" class="text-input" value="<?php echo $name ?>">
     <span>*<?php echo  $name_err; ?></span> 
 </div>
 
 <div>
-    <label >Description</label>
+    <label class=" h4 text-primary font-weight-bold">Description</label>
     <textarea name="Description"  id="x"> <?php echo $description ?>  </textarea>
     <span>*<?php echo  $description_err; ?></span> 
 </div>
 
 
 <div><br><br>
-    <button name="update_topic" type="submit" class="btn">update topic</button>
+    <button name="update_topic" type="submit" class="btn btn-success">update topic</button>
 </div>
 
 </form>

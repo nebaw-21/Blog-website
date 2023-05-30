@@ -13,7 +13,7 @@
 
     <!--font Awsome-->
     <link rel="stylesheet" href="../../asset/css/style.css">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="../../asset/css/admin.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -34,52 +34,52 @@
 <!--admin content-->
 <div class="admin-content">
 <div class="button-group">
-    <a href="create.php" class="btn btn-big">Add user</a>
-    <a href="index2.php" class="btn">Manage user</a>
+    <a href="create.php" class="btn btn-primary">Add user</a>
+    <a href="index2.php" class="btn btn-primary">Manage user</a>
 </div>
  
 <div class="content">
-    <h2 class="page-title">Edit users</h2>
+    <h2   class="h2 text-center text-primary font-weight-bold">Edit users</h2>
 <form action="edit.php" method="POST">
 
 <input type="hidden" name="id" class="text-input" value="<?php echo $id ?>">
     <div>
-        <label for="">username</label><br>
+        <label class="h5 text-primary font-weight-bold">username</label><br>
         <input type="text" name="username" class="text-input" value="<?php echo $name ?>">
         <span>*<?php echo  $name_err; ?></span> 
     </div>
     
     
     <div>
-        <label for="">Email</label><br>
+        <label class="h5 text-primary font-weight-bold">Email</label><br>
         <input type="email" name="email" class="text-input" value="<?php echo $email ?>">
         <span>*<?php echo  $email_err; ?></span> 
     </div>
     
     
     <div>
-        <label for="">password</label><br>
+        <label class="h5 text-primary font-weight-bold">password</label><br>
         <input type="password" name="password" class="text-input" value="<?php echo $Password ?>">
         <span>*<?php echo  $password_err; ?></span> 
     </div>
     
     
     <div>
-        <label for="">password Confirmation</label><br>
+        <label class="h5 text-primary font-weight-bold">password Confirmation</label><br>
         <input type="password" name="confirmPassword" class="text-input">
         <span>*<?php echo  $password_err; ?></span> 
     </div>
 
     <div><br>
 
-        <label >
+        <label class="h5 text-primary font-weight-bold"  >
         <input type="checkbox" name="admin" class="text-input">
         Admin
         </label>
         </div>
     
 <div><br><br>
-    <button type="submit" name="update_user" class="btn">Update</button>
+    <button type="submit" name="update_user" class="btn btn-success">Update</button>
 </div>
 
 </form>

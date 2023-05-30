@@ -15,6 +15,7 @@
 
     <!--font Awsome-->
     <link rel="stylesheet" href="../../asset/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
     <link rel="stylesheet" href="../../asset/css/admin.css">
 
@@ -36,30 +37,30 @@
 <!--admin content-->
 <div class="admin-content">
 <div class="button-group">
-    <a href="create.php" class="btn btn-big">Add topic</a>
-    <a href="index2.php" class="btn">Manage topic</a>
+    <a href="create.php" class="btn btn-primary">Add topic</a>
+    <a href="index2.php" class="btn btn-primary">Manage topic</a>
 </div>
  
 <div class="content">
-    <h2 class="page-title">Add topics</h2>
+    <h2   class="h2 text-center text-primary font-weight-bold">Add topics</h2>
 
 
 <form action="create.php" method="post">
 <div>
-    <label >Name</label><br>
+    <label  class=" h4 text-primary font-weight-bold" >Name</label><br>
     <input name="name" type="text" class="text-input">
     <span>*<?php echo  $name_err; ?></span> 
 </div>
 
 <div>
-    <label >Description</label>
+    <label class=" h4 text-primary font-weight-bold" >Description</label>
     <textarea name="Description" id="x"></textarea>
     <span>*<?php echo  $description_err; ?></span> 
 </div>
 
 
 <div><br><br>
-    <button name="add_topic" type="submit" class="btn">Add topic</button>
+    <button name="add_topic" type="submit" class="btn btn-success">Add topic</button>
 </div>
 
 

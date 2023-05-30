@@ -20,6 +20,7 @@ session_start();
     <link rel="stylesheet" href="../../asset/css/style.css">
 
 <link rel="stylesheet" href="../../asset/css/admin.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -38,17 +39,18 @@ session_start();
 <!--admin content-->
 <div class="admin-content">
 <div class="button-group">
-    <a href="create.php" class="btn btn-big">Add post</a>
-    <a href="index2.php" class="btn">Manage post</a>
+    <a href="create.php" class="btn btn-primary">Add post</a>
+    <a href="index2.php" class="btn btn-primary">Manage post</a>
 </div>
  
 <div class="content">
     <h2 class="page-title">Manage posts</h2>
-<table>
+
+<table class="table table-striped">
     <thead>
         <th>N</th>
         <th>Title</th>
-        <th>Authore</th>
+        <th>Authors</th>
         <th colspan="3">Action</th>
     </thead>
 <tbody>
@@ -61,15 +63,15 @@ session_start();
     <td><?php echo $key +1; ?></td>
     <td><?php echo $post['title']; ?></td>
     <td> <?php echo  $post['username'] ?> </td>
-    <td><a href="edit.php?id=<?php echo $post['id']; ?>" class="edit">edit</a></td>
-    <td><a href="index2.php?del_id=<?php echo $post['id']; ?>" class="delete">delete</a></td>
+    <td><a href="edit.php?id=<?php echo $post['id']; ?>" class="btn btn-success">edit</a></td>
+    <td><a href="index2.php?del_id=<?php echo $post['id']; ?>" class="btn btn-danger">delete</a></td>
 
 
 <?php if($post['published']): ?> <!-- result will be 0 or 1 -->
-<td><a href="edit.php?published=0&p_id=<?php echo $post['id'] ?>" class="Unpublish">Unpublish</a></td>
+ <td> <a href="edit.php?published=0&p_id=<?php echo $post['id'] ?>" class="btn btn-warning">Unpublish</a></td>
 
 <?php else:?>
-    <td><a href="edit.php?published=1&p_id=<?php echo $post['id'] ?>" class="publish">Publish</a></td>
+    <td><a href="edit.php?published=1&p_id=<?php echo $post['id'] ?>" class="btn btn-success">Publish</a></td>
 <?php endif; ?>
 
 </tr>

@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="../../asset/css/style.css">
 
 <link rel="stylesheet" href="../../asset/css/admin.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -33,15 +34,15 @@
 <!--admin content-->
 <div class="admin-content">
 <div class="button-group">
-<a href="create.php" class="btn btn-big">Add topic</a>
-    <a href="index2.php" class="btn">Manage topic</a>
+<a href="create.php"class="btn btn-primary">Add topic</a>
+    <a href="index2.php" class="btn btn-primary" >Manage topic</a>
 </div>
  
 <div class="content">
     <h2 class="page-title">Manage topics</h2>
 
 
-<table>
+<table  class="table table-striped">
     <thead>
         <th>N</th>
         <th>Name</th>
@@ -55,8 +56,8 @@
     
         <td><?php echo $key +1; ?></td>
         <td><?php echo $topic['name']; ?></td>
-       <td><a href="edit.php?id=<?php echo $topic['id']; ?>" class="edit">edit</a></td>
-       <td><a href="index2.php?del_id=<?php echo $topic['id']; ?>" class="delete">delete</a></td>
+       <td><a href="edit.php?id=<?php echo $topic['id']; ?>" class="btn btn-success">edit</a></td>
+       <td><a href="index2.php?del_id=<?php echo $topic['id']; ?>"  class="btn btn-danger">delete</a></td>
        
     </tr>
 

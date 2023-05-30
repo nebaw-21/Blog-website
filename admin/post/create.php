@@ -14,6 +14,7 @@
  
 
     <link rel="stylesheet" href="../../asset/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     
     <link rel="stylesheet" href="../../asset/css/admin.css">
     
@@ -35,36 +36,36 @@
 <!--admin content-->
 <div class="admin-content">
 <div class="button-group">
-    <a href="create.php" class="btn btn-big">Add post</a>
-    <a href="index2.php" class="btn">Manage post</a>
+    <a href="create.php" class="btn btn-primary">Add post</a>
+    <a href="index2.php" class="btn btn-primary">Manage post</a>
 </div>
  
 <div class="content">
-    <h2 class="page-title">Add posts</h2>
+    <h2 class="h  text-center text-primary  font-weight-bold">Add posts</h2>
 
 
 <form action="create.php" method="POST" enctype="multipart/form-data">
 <div>
-    <label >Title</label><br>
+    <label class=" h3 text-primary font-weight-bold" >Title</label><br>
     <input name="title" type="text" class="text-input">
     <span>*<?php echo  $title_err; ?></span>  
 </div>
 
 <div>
-    <label >Description</label>
+    <label  class=" h3 text-primary font-weight-bold" >Description</label>
     <textarea name="body" id="x"></textarea>
     <span>*<?php echo  $body_err; ?></span> 
 </div>
 
-<div>
-<label >Image or video</label><br>
-    <input name="image" type="file" class="text-input">
+<div class="custom-file">
+<label class="custom-file-label  h3 text-primary font-weight-bold" for="customFile"    >Image</label><br>
+    <input name="image" type="file" class="custom-file-input" id="customFile">
     <span>*<?php echo  $image_err; ?></span> 
 </div>
 
 <div><br>
 
-<label >topic</label>
+<label  class=" h3 text-primary font-weight-bold"  >topic</label><br>
 <select name="topic_id" class="text-input">
     <option value=""></option>
     <?php foreach($topics as $key => $topic): ?>
@@ -77,20 +78,17 @@
 
 </div>
 
-
 <div>
-<label >
-    
-    <input name="published" type="checkbox" class="text-input">
+<label  class=" h4 text-primary font-weight-bold" >
+    <input name="published" type="checkbox" class="btn">
    Publish  
 </label>
+
 </div>
 
-
-<div><br><br>
-    <button name="add_posts" type="submit" class="btn">Add post</button>
+<div>
+    <button name="add_posts" type="submit" class="btn btn-success">Add post</button>
 </div>
-
 
 </form>
 
