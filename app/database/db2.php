@@ -17,7 +17,6 @@ function executeQuery2($sql, $data){
     $stmt->bind_param($types, ...$values);// to avoid direct sql injection
     $stmt->execute();
     return $stmt;
-
 }
 
 function selectAll2($table , $conditions = []){

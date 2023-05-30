@@ -4,6 +4,8 @@ session_start();
  
  adminOnly();
 
+
+
  $posts = getPublishedPost2();
 
 ?>
@@ -75,6 +77,7 @@ session_start();
 <?php endif; ?>
 
 </tr>
+
 <?php endforeach;?>
 
 </tbody>
