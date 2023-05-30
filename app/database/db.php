@@ -132,6 +132,29 @@ return $stmt->affected_rows;
 
 }
 
+function getAllUser($start, $limit){
+    global $conn;
+
+    $sql = "SELECT *  FROM user  LIMIT ?, ?";
+    $stmt = executeQuery($sql, [$start, $limit]);
+    $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    return $records;
+}
+
+function countUser() {
+    global $conn;
+    $sql = "SELECT COUNT(*) as count FROM user WHERE admin IN (?, ?)";
+
+    $values = [0, 1];
+    $stmt = executeQuery($sql, $values);
+    $result = $stmt->get_result()->fetch_assoc();
+    $count = $result['count'];
+
+    return $count;
+}
+
+
+
 
 $conditions =[
     'admin' => 0,

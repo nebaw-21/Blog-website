@@ -145,16 +145,31 @@ $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 return $records;
 }
 
-function getPublishedPost2() {
+function getPublishedPost2($start, $limit ) {
     global $conn;
 
     $values = [0, 1];
-    $sql = "SELECT p.*, u.username FROM post AS p JOIN user AS u ON p.user_id = u.id WHERE p.published IN (?, ?)";
+    $sql = "SELECT p.*, u.username FROM post AS p JOIN user AS u ON p.user_id = u.id WHERE p.published IN (?, ?)  LIMIT $start, $limit";
     $stmt = executeQuery2($sql, $values);
-
     $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     return $records;
 }
+
+function getPublishedPost21() {
+    global $conn;
+    $sql = "SELECT COUNT(*) as count FROM post WHERE published IN (?, ?) ";
+
+    $values = [0, 1];
+    $stmt = executeQuery2($sql,$values );
+    $result = $stmt->get_result()->fetch_assoc();
+    $count = $result['count'];
+
+    return $count;
+}
+
+
+
+
 
 function  getPublishedPost3(){
     global $conn;
