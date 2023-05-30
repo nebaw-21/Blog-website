@@ -8,7 +8,6 @@ if(empty($_SESSION['id'])){
 }
 
 }
-
 function adminOnly($redirect = '../../index.php'){
     if(empty($_SESSION['id']) && empty($_SESSION['admin'])){
         $_SESSION['message'] ='you are not authorized';
@@ -19,33 +18,13 @@ function adminOnly($redirect = '../../index.php'){
     }
     
     }
-    function gustOnly(){
+    function gustOnly($redirect = 'index.php'){
         if(isset($_SESSION['id'])){
-            header('location: ../../index.php');
+            header('location:'. $redirect );
             exit(0);
         }
         
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ?>

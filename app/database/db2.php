@@ -1,5 +1,5 @@
 <?php
-session_start();
+@session_start();
 require('connect.php');
 
 function dd2($value)//to be deleted
@@ -136,7 +136,10 @@ function  getPublishedPost(){
     $sql = "SELECT p.*, u.username 
     FROM post AS p 
     JOIN user AS u ON p.user_id = u.id 
-    WHERE p.published = ? AND p.created_at >= DATE_SUB(NOW(), INTERVAL 2 DAY); ";
+    WHERE p.published = ?
+    ORDER BY  DATE( p.created_at) DESC LIMIT 4";
+
+//WHERE p.published = ? AND p.created_at >= DATE_SUB(NOW(), INTERVAL 2 DAY);
     
     $stmt = executeQuery2($sql , ['published' => 1] );
 $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -165,8 +168,6 @@ function  getPublishedPost3(){
 $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 return $records;
 }
-
-
 
 
 function  getMostNumberOfPublishedPost(){

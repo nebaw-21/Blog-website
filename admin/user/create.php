@@ -1,5 +1,5 @@
-<?php include('C:/xampp/htdocs/Blog/app/controllers/users.php');
-
+<?php
+ include('C:/xampp/htdocs/Blog/app/controllers/users.php');
  adminOnly();
 ?>
 

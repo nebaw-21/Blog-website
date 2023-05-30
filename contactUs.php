@@ -1,23 +1,72 @@
 <?php
- include('C:/xampp/htdocs/Blog/app/controllers/topic.php');
+
+//include header part 
+include( "app/include/header.php"); 
+userOnly();
+
+
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+require 'vendor/autoload.php';
+
+if (isset($_POST['submit'])) {
+
+// initializing variables
+
+$errors = array(); 
+$email  =$_POST['email'];
+$username=$_POST['name'];
+$message = $_POST['message'];
+   
+
+   
+   
+    $mail = new PHPMailer(true);
+    header('location:index.php');
+
+    try {
+      //Server settings
+      $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
+      $mail->isSMTP();                                            // Send using SMTP
+      $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
+      $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+      $mail->Username   = 'nebiyuzewge@gmail.com';                     // SMTP username
+      $mail->Password   = 'vknqqhbqhsvoknys';                               // SMTP password
+      $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+      $mail->Port       = 465;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+  
+      //Recipients
+      $email1='nebiyuzewge@gmail.com';
+      $mail->setFrom( $email1, 'customer');
+      $mail->addAddress($email1, $username);     // Add a recipient
+      $mail->addAddress($email1);               // Name is optional
+     // $mail->addReplyTo('adamweiss651@gmail.com', 'Information');
+     // $mail->addCC('cc@example.com');
+     // $mail->addBCC('bcc@example.com');
+  
+      // Attachments
+     // $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+     // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+  
+      // Content
+      $mail->isHTML(true);                                  // Set email format to HTML
+      $mail->Subject = 'customer message ' .$email.' ';
+      $mail->Body    = $message;
+      $mail->AltBody = $message;
+  
+      $mail->send();
+      echo 'Message has been sent';
+  } catch (Exception $e) {
+      echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+  }
+
  
+  }
+  ?>
 
-if(isset($_POST['submit'])) {
-  $name = $_POST['name'];
-  $email = $_POST['email'];
-  $message = $_POST['message'];
-
-  $to = "nebiyuzewge@gmail.com";
-  $headers = "From: $email \r\n";
-$headers .= "Reply-To: $email \r\n";
-  $headers .= "Content-type: text/plain; charset=UTF-8 \r\n";
-
-  $email_body = "You have received a new message from $name.\n\n"."Here is the message:\n\n$message";
-
-   mail($to,$email_body,$headers);
-
-}
-?>
 
 <!DOCTYPE html>
 <!-- Website - www.codingnepalweb.com -->
@@ -26,7 +75,7 @@ $headers .= "Reply-To: $email \r\n";
     <meta charset="UTF-8" />
     <title> Contact Us Form </title>
     <link rel="stylesheet" href="asset/css/style.css?v=2">
-    <link rel="stylesheet" href="asset/css/contactUs.css?v=2">
+    <link rel="stylesheet" href="asset/css/contactUs.css">
     <!-- Fontawesome CDN Link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -34,8 +83,7 @@ $headers .= "Reply-To: $email \r\n";
   <body>
 
     <!-- include header part -->
-    
-    <?php require_once("app/include/header.php");?>
+ 
 <br><br>
     <div class="container">
       <div class="content">
@@ -62,8 +110,7 @@ $headers .= "Reply-To: $email \r\n";
         </div>
         <div class="right-side">
           <div class="topic-text">Send us a message</div>
-          <p>If you have any comment or any types of question related to my this website, you can send us message from here. It's our pleasure to help you.</p>
-          
+        
           <form action="contactUs.php" method="POST">
 
 
@@ -77,7 +124,7 @@ $headers .= "Reply-To: $email \r\n";
               <textarea name="message" placeholder="Enter your message" required></textarea>
             </div>
             <div class="button">
-              <input name="submit" type="submit" value="Send Now" />
+              <input class="submit_button" name="submit" type="submit" value="Send Now" />
             
             </div>
           </form>

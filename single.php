@@ -1,6 +1,6 @@
-<?php require('C:/xampp/htdocs/Blog/app/database/db2.php');
-include('C:\xampp\htdocs\Blog\app\include\middleware.php');
-
+<?php
+error_reporting(E_ERROR | E_PARSE);
+require('C:/xampp/htdocs/Blog/app/database/db2.php');
 
     $relatedPosts = array();
     $comment_table = 'commet';
@@ -47,14 +47,13 @@ if(empty($view_count['id']) ){
     //dd2($NumberOfViews);
    
 }
-       
-     
+         
 }
 $comment_posts = getUserNameForComment($_SESSION['post_id'] );
 //dd2($comment_posts);
 
 if(isset($_POST['comment_button'])){
-    userOnly();
+
     $_REQUEST['post_id'] = $_SESSION['post_id'];
     $_REQUEST['user_id'] = $_SESSION['id'];//from login user
     $topic_id=$_REQUEST['topic_id'];
@@ -75,9 +74,8 @@ if(isset($_POST['comment_button'])){
         }
 }
 
-
 if(isset($_POST['like_button'])){
-    userOnly();
+
     $_POST['user_id'] = $_SESSION['id'];//from login user
     $_POST['post_id'] = $_SESSION['post_id'];
  
@@ -100,9 +98,7 @@ if(!isset($like_already)){
     @$number_of_views = getNumberOfViews($_SESSION['post_id']);
     @$number_of_comments = getNumberOfComments($_SESSION['post_id']);
     //dd2($number_of_views);
-
-
-    
+ 
 ?>
 <!DOCTYPE html>
 <html lang="en">

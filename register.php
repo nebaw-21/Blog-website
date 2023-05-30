@@ -1,3 +1,9 @@
+<?php 
+//include header part 
+include( "app/include/header.php"); 
+gustOnly();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,8 +17,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 <body>
-<!-- include header part -->
-<?php include( "app/include/header.php"); ?>
+
+
 
 <div class="container">
         <div class="row">

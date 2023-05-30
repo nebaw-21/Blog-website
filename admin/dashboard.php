@@ -1,6 +1,6 @@
 <?php
  include('C:/xampp/htdocs/Blog/app/controllers/post.php');
- include("C:/xampp/htdocs/Blog/app/include/middleware.php"); 
+
  adminOnly();
 ?>
 

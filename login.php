@@ -1,3 +1,9 @@
+<?php 
+//include header part 
+include( "app/include/header.php"); 
+gustOnly();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +18,7 @@
 </head>
 <body>
 <!-- include header part -->
-<?php include( "app/include/header.php"); ?>
+<?php ?>
 
 <div class="container">
         <div class="row">
