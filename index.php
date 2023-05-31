@@ -2,6 +2,7 @@
 require('C:/xampp/htdocs/Blog/app/database/db2.php');
 
 session_write_close();
+
 $posts =array();
 $postsTitle = 'Recent Post';
 if(isset($_GET['topic_id'])){
@@ -30,8 +31,13 @@ $MostViewedPosts = getMostNumberOfPublishedPost();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog</title>
 
+    <head>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+
     <!--font Awsome-->
-    <link rel="stylesheet" href="asset/css/style.css?v=2">
+    <link rel="stylesheet" href="asset/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -89,12 +95,12 @@ $MostViewedPosts = getMostNumberOfPublishedPost();
         <img src="<?php echo 'asset/image/'. $post['image']; ?>" alt="" class="post-image">
     <div class="post-preview">
         <h1><a href="single.php?title_id=<?php echo $post['id'] .'&topic_id=' . $post['topic_id'] ;?>"><?php echo $post['title'] ?> </a></h1>
-       <i class="fa fa-user"><?php echo $post['username'] ?></i>
+       <i class="fa fa-user "><?php echo $post['username'] ?></i>
         <br><br>
         <i class="fa calender"><?php echo date('F j,Y', strtotime($post['created_at'])); ?></i>
         <p class="preview-text"> <?php echo html_entity_decode(substr($post['body'],0,100).'...' ); ?></p>
 
-    <a href="single.php?title_id=<?php echo $post['id'] .'&topic_id=' . $post['topic_id'] ;?>" class="btn read-more">Read More</a>
+    <a href="single.php?title_id=<?php echo $post['id'] .'&topic_id=' . $post['topic_id'] ;?>" class="btn btn-primary">Read More</a>
     </div>
     </div>
 
@@ -121,7 +127,7 @@ $MostViewedPosts = getMostNumberOfPublishedPost();
 
         <?php foreach($topics as $key => $topic): ?>
     
-            <li><a href="<?php echo 'index.php?topic_id='. $topic['id'] . '&name=' . $topic['name'] ?>"> <?php echo $topic['name'] ?></a> </li>
+            <li ><a class="list_text"  href="<?php echo 'index.php?topic_id='. $topic['id'] . '&name=' . $topic['name'] ?>"> <?php echo $topic['name'] ?></a> </li>
     
     <?php endforeach; ?>
 
@@ -148,7 +154,7 @@ $MostViewedPosts = getMostNumberOfPublishedPost();
     <i class="fa calender"><?php echo date('F j,Y', strtotime($MostViewedPost['created_at'])); ?></i>
     <p class="preview-text"> <?php echo html_entity_decode(substr($MostViewedPost['body'],0,100).'...' ); ?></p>
 
-<a href="single.php?title_id=<?php echo $post['id'] .'&topic_id=' . $MostViewedPost['topic_id'] ;?>" class="btn read-more">Read More</a>
+<a href="single.php?title_id=<?php echo $post['id'] .'&topic_id=' . $MostViewedPost['topic_id'] ;?>" class="btn btn-primary">Read More</a>
 </div>
 </div>
 
@@ -164,10 +170,16 @@ $MostViewedPosts = getMostNumberOfPublishedPost();
 <!-- include footer part -->
 <?php include("app/include/footer.php"); ?>
 
+<!-- js library-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.slim.min.js" integrity="sha512-fYjSocDD6ctuQ1QGIo9+Nn9Oc4mfau2IiE8Ki1FyMV4OcESUt81FMqmhsZe9zWZ6g6NdczrEMAos1GlLLAipWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<!-- js library-->
 <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+<!-- js library-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 
+  <!-- main js-->
 <script src="asset/js/script.js"></script>
 
 </body>

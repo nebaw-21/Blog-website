@@ -5,13 +5,19 @@
 body{
     padding: 0px;
     margin: 0px;
-    background: #16222A;
-    background: -webkit-linear-gradient(59deg, #89bfda, #a6d2f0);
-    background: linear-gradient(59deg, #88bed9, #486c84);
+    background: #6390af;
+    background: -webkit-linear-gradient(59deg, #89bfda, #70b4e1);
+    background: linear-gradient(59deg, #88bed9, #83b0cf);
+    font-family: 'Open Sans', sans-serif;
 
 }
 
-
+.list_text{
+    font-size: 1rem;
+    font-weight: bolder;
+    color: wheat;
+    
+}
 
 .clearfix::after{
     content: '';
@@ -161,7 +167,8 @@ header .menu-toggle{
     
 }
 
-.post-slider{
+.sidebar.single{
+    max-height: 100rem;
 
 
 }
@@ -173,7 +180,7 @@ header .menu-toggle{
 .post-slider .post-wrapper{
 
     width: 84%;
-    height: 350px;
+    height: 500px;
     overflow: hidden;
     margin:0px auto;
 }
@@ -221,7 +228,7 @@ header .menu-toggle{
     width: 30%;
     float: left;
  
-    height: 300px;
+max-height: 100%;
 }
 
 .content .recent-post-title{
@@ -233,7 +240,7 @@ width: 80%;
 height:400px;
 margin: 10px auto;
 border-radius: 5px;
-background: white;
+background: rgb(169, 224, 237);
 
 
 }
@@ -271,13 +278,16 @@ overflow-y:auto;
 
 .content .main-content .post .read-more{
     position: absolute;
-    bottom: 10px;
+    bottom: -35px;
     right: 10px;
 
 }
 
 .content .sidebar .section{
-    background: white;
+    background: #57a4d7;
+    background: -webkit-linear-gradient(59deg, #4c9ac1, #70b4e1);
+    background: linear-gradient(59deg, #3c80a2, #4389b8);
+
     padding: 20px;
     border-radius: 5px;
     margin-bottom: 20px;

@@ -129,7 +129,6 @@ $stmt = executeQuery($sql, ['id'=>$id]);
   
 return $stmt->affected_rows;
 
-
 }
 
 function getAllUser($start, $limit){
@@ -153,19 +152,5 @@ function countUser() {
     return $count;
 }
 
-
-
-
-$conditions =[
-    'admin' => 0,
-    'username' => 'kumsa',
-    'email' => 'janjawid@gmail.com',
-    'password' => '4321'
-];
-
-
-//$users = create('user' , $conditions);
-//$users = delete('user' , 5 );
-//dd($users);
 
 ?>

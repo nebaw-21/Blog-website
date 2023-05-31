@@ -10,7 +10,6 @@ $table ='user';
 
 $admin_users = selectAll($table );
 
-
  function loginUser($user){
     $_SESSION['id']= $user['id'] ;
     $_SESSION['username']= $user['username'];
@@ -97,17 +96,13 @@ if(isset($_POST['admin'])){
     $_POST['admin']=0;
     $user_id = create($table, $_POST);
     $user = selectOne($table, ['id' => $user_id]);
- 
-    //dd($user);
+
     loginUser($user);
 }
-
-        
-       //log user in
+ //log user in
 
     }  
-    
-    
+       
 }
 elseif(isset($_POST['login-btn'])){
     
@@ -198,8 +193,6 @@ elseif($_POST["password"] !== $_POST["confirmPassword"]){
     $password_err = "passwords must much!";
 }else{
     
-    
-
     $_POST['admin']= isset($_POST['admin']) ? 1: 0;
     unset($_POST['confirmPassword'], $_POST['update_user'],$_POST['id']);
     
@@ -213,11 +206,8 @@ elseif($_POST["password"] !== $_POST["confirmPassword"]){
     exit();
 }
 
-
 }
    
-
-
 ?>
 
 

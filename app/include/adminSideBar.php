@@ -10,10 +10,10 @@
 <body>
 <div class="left-sidebar">
 
-    <ul>
-    <li><a href="../../admin/post/index2.php">Manage post</a></li>
-    <li><a href="../../admin/user/index2.php">Manage users</a></li>
-    <li><a href="../../admin/topic/index2.php">Manage topics</a></li>
+    <ul class="">
+    <li class="list-group-item" ><a class="btn btn-success" href="../../admin/post/index2.php">Manage post</a></li><br><br>
+    <li class="list-group-item"><a class="btn btn-success" href="../../admin/user/index2.php">Manage users</a></li><br><br>
+    <li class="list-group-item"><a class="btn btn-success" href="../../admin/topic/index2.php">Manage topics</a></li>
 
 
 

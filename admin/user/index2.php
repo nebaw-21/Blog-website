@@ -39,8 +39,6 @@
  $Previous = max($page - 1, 1);
  $Next = min($page + 1, $pages);
 
-
- 
 ?>
 
 <!DOCTYPE html>
@@ -119,7 +117,7 @@
 	                <tr>
                     <th>N</th>
                     <th>Title</th>
-                    <th>Authors</th>
+                    <th>users</th>
                      <th colspan="3">Action</th>
 	              	</tr>
 	          	</thead>

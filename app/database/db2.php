@@ -114,7 +114,6 @@ foreach($data as $key => $value){
   
     return $stmt->affected_rows;
 
-
 }
 
 function delete2($table , $id){
@@ -130,22 +129,20 @@ return $stmt->affected_rows;
 
 
 }
-function  getPublishedPost(){
+function  getPublishedPost(){//display recent posts
     global $conn;
     $sql = "SELECT p.*, u.username 
     FROM post AS p 
     JOIN user AS u ON p.user_id = u.id 
     WHERE p.published = ?
     ORDER BY  DATE( p.created_at) DESC LIMIT 4";
-
-//WHERE p.published = ? AND p.created_at >= DATE_SUB(NOW(), INTERVAL 2 DAY);
     
     $stmt = executeQuery2($sql , ['published' => 1] );
 $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 return $records;
 }
 
-function getPublishedPost2($start, $limit ) {
+function getPublishedPost2($start, $limit ) { //display posts by pagination
     global $conn;
 
     $values = [0, 1];
@@ -155,7 +152,7 @@ function getPublishedPost2($start, $limit ) {
     return $records;
 }
 
-function getPublishedPost21() {
+function getPublishedPost21() {//count the number of posts in the database
     global $conn;
     $sql = "SELECT COUNT(*) as count FROM post WHERE published IN (?, ?) ";
 
@@ -167,11 +164,7 @@ function getPublishedPost21() {
     return $count;
 }
 
-
-
-
-
-function  getPublishedPost3(){
+function  getPublishedPost3(){//select published posts
     global $conn;
     $sql = "SELECT p.*, u.username 
     FROM post AS p 
@@ -182,7 +175,6 @@ function  getPublishedPost3(){
 $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 return $records;
 }
-
 
 function  getMostNumberOfPublishedPost(){
     global $conn;
@@ -198,7 +190,6 @@ $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 return $records;
 
 }
-
 
 function getNumberOfLikes( $post_id){
 
@@ -229,8 +220,7 @@ $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 return $records;
 }
 
-
-function  getTopicId ($topic_id){
+function  getTopicId ($topic_id){//to display related posts
     global $conn;
     $sql = "SELECT p.* ,u.username FROM post AS p JOIN user AS u ON p.user_id=u.id WHERE p.published=? AND topic_id=?";
     
@@ -238,8 +228,6 @@ function  getTopicId ($topic_id){
 $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 return $records;
 }
-
-
 
 function   getUserNameForComment($post_id){
     global $conn;
@@ -268,8 +256,5 @@ $match ='%' . $term . '%';
 $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 return $records;
 }
-
-
-
 
 ?>

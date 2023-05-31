@@ -67,7 +67,7 @@ if(isset($_POST['comment_button'])){
             $comment_id  = create2($comment_table , $_REQUEST);
             header('Location: single.php?topic_id='. $topic_id
         
-); 
+);
     
         }else{
             header('Location: index.php');
@@ -92,8 +92,6 @@ if(!isset($like_already)){
         }
           
     }
-
-
     @$number_of_likes = getNumberOfLikes($_SESSION['post_id']);
     @$number_of_views = getNumberOfViews($_SESSION['post_id']);
     @$number_of_comments = getNumberOfComments($_SESSION['post_id']);
@@ -165,21 +163,17 @@ if(!isset($like_already)){
     <div class="post clearfix">
       
         <img src=" <?php echo 'asset/image/'. $relatedPos['image']; ?>" alt="">
-        <a href="single.php?title_id=<?php echo $relatedPos['id'] .'&topic_id=' . $relatedPos['topic_id'] ;?>" class="title"><?php echo $relatedPos['title'] ?></a>
+        <a class="list_text" href="single.php?title_id=<?php echo $relatedPos['id'] .'&topic_id=' . $relatedPos['topic_id'] ;?>" class="title"><?php echo $relatedPos['title'] ?></a>
     </div>
 
 <?php endforeach;?>
-
 
 </div>
 
     </div>
 
       <!--end of sidebars-->
-
 </div>
-
-
 
 <form action="single.php" method="POST">
 <input type="hidden" name="topic_id" value="<?php if(isset($_REQUEST['topic_id'])) echo $_REQUEST['topic_id'];else echo  $_POST['topic_id']  ?>">
@@ -188,8 +182,6 @@ if(!isset($like_already)){
 <button name="comment_button" type="submit" class= "btn btn-primary">COMMENT</button>
 </div>
 </form>
-
-
 
 <!-- start of comment section  -->
 <div class="container bootstrap snippets bootdey">
@@ -223,19 +215,6 @@ if(!isset($like_already)){
     </div>
 
     <?php endforeach; ?>  
-
-<!-- end of comment section  -->
-
-<!--
-   
-
-    <li>most viseted posts</li>
-
-    <li>make contact us functional</li>
-    
- -->
-
-
 
 <!--start of footer part-->
 <?php include("app/include/footer.php"); ?>

@@ -1,7 +1,7 @@
 <?php
  include('C:/xampp/htdocs/Blog/app/controllers/post.php');
  
- adminOnly();
+ adminOnly();//this page accessed by only admins
 ?>
 
 <!DOCTYPE html>
@@ -12,12 +12,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add topic</title>
 
-    <!--font Awsome-->
+     <!--main css style-->
     <link rel="stylesheet" href="../../asset/css/style.css">
+    <!--bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-
+    <!--admin css style-->
     <link rel="stylesheet" href="../../asset/css/admin.css">
-
+    <!--font Awsome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -97,7 +98,11 @@ Publish
 
 </div>
  <!-- Admin page wrapper-->
+
+  <!--  js library  -->
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.slim.min.js" integrity="sha512-fYjSocDD6ctuQ1QGIo9+Nn9Oc4mfau2IiE8Ki1FyMV4OcESUt81FMqmhsZe9zWZ6g6NdczrEMAos1GlLLAipWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+ <!--cdk editor-->
  <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
  
  <script>

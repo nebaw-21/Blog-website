@@ -1,10 +1,7 @@
 <?php
-
 //include header part 
 include( "app/include/header.php"); 
-userOnly();
-
-
+userOnly();//this page accessed by only users
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -21,22 +18,19 @@ $email  =$_POST['email'];
 $username=$_POST['name'];
 $message = $_POST['message'];
    
+$mail = new PHPMailer(true);
+header('location:index.php');
 
-   
-   
-    $mail = new PHPMailer(true);
-    header('location:index.php');
-
-    try {
+try {
       //Server settings
-      $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
-      $mail->isSMTP();                                            // Send using SMTP
-      $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
-      $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-      $mail->Username   = 'nebiyuzewge@gmail.com';                     // SMTP username
-      $mail->Password   = 'vknqqhbqhsvoknys';                               // SMTP password
-      $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
-      $mail->Port       = 465;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+ $mail->SMTPDebug = SMTP::DEBUG_SERVER;  // Enable verbose debug output
+ $mail->isSMTP();                        // Send using SMTP
+ $mail->Host       = 'smtp.gmail.com';   // Set the SMTP server to send through
+$mail->SMTPAuth   = true;                // Enable SMTP authentication
+ $mail->Username   = 'nebiyuzewge@gmail.com'; // SMTP username
+  $mail->Password   = 'vknqqhbqhsvoknys';    // SMTP password
+  $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;  // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+  $mail->Port       = 465;                          // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
   
       //Recipients
       $email1='nebiyuzewge@gmail.com';
@@ -67,7 +61,6 @@ $message = $_POST['message'];
   }
   ?>
 
-
 <!DOCTYPE html>
 <!-- Website - www.codingnepalweb.com -->
 <html lang="en" dir="ltr">
@@ -89,19 +82,19 @@ $message = $_POST['message'];
       <div class="content">
         <div class="left-side">
           <div class="address details">
-            <i class="fas fa-map-marker-alt"></i>
+            <i class="fa fa-map-marker-alt custom-icon "></i>
             <div class="topic">Address</div>
             <div class="text-one">Addis Ababa, Tuludimtu</div>
          
           </div>
           <div class="phone details">
-            <i class="fas fa-phone-alt"></i>
+            <i class="fa fa-phone-alt custom-icon "></i>
             <div class="topic">Phone</div>
             <div class="text-one">+251 989 5647 46</div>
             <div class="text-two">+251 345 6789 34</div>
           </div>
           <div class="email details">
-            <i class="fas fa-envelope"></i>
+            <i class="fa fa-envelope custom-icon "></i>
             <div class="topic">Email</div>
             <div class="text-one">ajaibNews@gmail.com</div>
             <div class="text-two">nebiyuzewge@gmail.com</div>
@@ -133,10 +126,13 @@ $message = $_POST['message'];
       
     </div>
 
+    <!-- js library-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.slim.min.js" integrity="sha512-fYjSocDD6ctuQ1QGIo9+Nn9Oc4mfau2IiE8Ki1FyMV4OcESUt81FMqmhsZe9zWZ6g6NdczrEMAos1GlLLAipWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     
+    <!-- main js-->
     <script src="asset/js/script.js"></script>  
 
+    <!-- footer part-->
     <?php include("app/include/footer.php"); ?>
 
   </body>

@@ -1,12 +1,12 @@
 <?php 
 require('C:/xampp/htdocs/Blog/app/database/db2.php');
 include("C:/xampp/htdocs/Blog/app/include/middleware.php"); 
-
-//include("C:/xampp/htdocs/Blog/app/include/middleware.php"); 
+ 
 $table = 'post';
 
-$topics = selectAll2('topics');
-$posts = selectAll2($table);
+$topics = selectAll2('topics');//select all from topic table 
+$posts = selectAll2($table);//select all from post table 
+
 $title_err = '';
 $body_err = '';
 $image_err = '';
@@ -18,15 +18,8 @@ $body = '';
 $topic_id = '';
 $published ='';
 
-@$authores = selectOne2('user' , ['id' =>  $_SESSION['id']] );
-//dd2($authores);
-
-
-
-
-if(isset($_POST['add_posts'])){
-    //adminOnly();
-
+if(isset($_POST['add_posts'])){// add posts
+    
     $title_already = selectOne2($table, ['title' => $_POST["title"]]);
 
     unset($_POST['add_posts']);
@@ -87,9 +80,8 @@ $published = $post['published'];
 
 }
 
-
-if(isset($_POST['update_post'])){
-    //adminOnly();
+if(isset($_POST['update_post'])){//update posts
+   
     
     $id = $_POST['id'];
     
@@ -112,7 +104,6 @@ elseif ( $title_already['id'] != $id) {
     $title_err = "title already exist";      
 }
 
-    
      elseif(empty($_POST["body"])){
                 $body_err = "body is required!!!";  
                 
@@ -146,8 +137,8 @@ elseif(empty($_FILES['image']['name'])){
 }
       }
 
-if(isset($_GET['del_id'])){
-    //adminOnly();
+if(isset($_GET['del_id'])){ //delete posts
+   
         $id = $_GET['del_id'];
        $delete = delete2($table, $id);
 
@@ -165,7 +156,5 @@ $update = update2($table , $p_id, ['published' => $published]);
 header('Location: ../../admin/post/index2.php');   
 exit();
 }
-
-
 
     ?>

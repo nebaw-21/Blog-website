@@ -1,4 +1,4 @@
-<?php error_reporting(E_ERROR | E_PARSE); ?>
+<?php error_reporting(E_ERROR | E_PARSE);//to hide warning ?> 
 
 <?php if (isset( $_SESSION['id'])):  ?>
      
