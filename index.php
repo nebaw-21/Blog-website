@@ -32,13 +32,17 @@ $MostViewedPosts = getMostNumberOfPublishedPost();
     <title>Blog</title>
 
     <head>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 
-    <!--font Awsome-->
-    <link rel="stylesheet" href="asset/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
+<link rel="stylesheet" href="asset/css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
+<!--font Awsome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -162,13 +166,25 @@ $MostViewedPosts = getMostNumberOfPublishedPost();
 
 </div>
 <!--End of Most viewed post  -->
-
 </div>
 
+<div class="cookie-banner" style="">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <p>This website uses cookies to ensure you get the best experience on our website. </p>
+        <button class="btn btn-primary" id="accept-cookies-btn">Accept Cookies</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 <!--start of footer part-->
+<?php include("app/include/footer.php"); ?>
 
 <!-- include footer part -->
-<?php include("app/include/footer.php"); ?>
 
 <!-- js library-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.slim.min.js" integrity="sha512-fYjSocDD6ctuQ1QGIo9+Nn9Oc4mfau2IiE8Ki1FyMV4OcESUt81FMqmhsZe9zWZ6g6NdczrEMAos1GlLLAipWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -181,6 +197,42 @@ $MostViewedPosts = getMostNumberOfPublishedPost();
 
   <!-- main js-->
 <script src="asset/js/script.js"></script>
+
+
+<script>
+
+  if ( getCookie('cookieSeen') == 'shown') {
+    $(".cookie-banner").fadeOut();
+    setCookie('cookieSeen','shown',25);
+  }
+ $("#accept-cookies-btn").click(function() {
+   $(".cookie-banner").fadeOut();
+    setCookie('cookieSeen','shown',25);
+  });
+console.log(getCookie('cookieSeen'));
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+</script>
 
 </body>
 </html>

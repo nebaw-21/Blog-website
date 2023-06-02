@@ -385,3 +385,31 @@ header{
     }
 
 }
+
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: #f5f5f5;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    z-index: 9999;
+    box-shadow: 0px 0px10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cookie-banner p {
+    display: inline-block;
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  .cookie-banner a {
+    color: #337ab7;
+    text-decoration: none;
+  }
+  
+  .cookie-banner button {
+    margin-left: 10px;
+  }
