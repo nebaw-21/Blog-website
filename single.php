@@ -1,6 +1,7 @@
 <?php
-error_reporting(E_ERROR | E_PARSE);
+//error_reporting(E_ERROR | E_PARSE);
 require('C:/xampp/htdocs/Blog/app/database/db2.php');
+
 
     $relatedPosts = array();
     $comment_table = 'commet';
@@ -117,7 +118,7 @@ if(!isset($like_already)){
       <!--navigation bar-->
       
 <!-- include header part -->
-<?php include( "app/include/header.php"); ?>
+<?php include( "app/include/header.php");  ?>
 
   <!--end of navigation bar-->
 

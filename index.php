@@ -1,6 +1,8 @@
 <?php  
 require('C:/xampp/htdocs/Blog/app/database/db2.php');
 
+
+
 session_write_close();
 
 $posts =array();
@@ -29,29 +31,41 @@ $MostViewedPosts = getMostNumberOfPublishedPost();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog</title>
+    <title>AJAIBNEWS</title>
 
-    <head>
+  
+	<!-- Modernizr JS -->
+	<script src="js/modernizr-2.6.2.min.js"></script>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-</head>
 
+<link rel="stylesheet" href="asset/css/style2.css">
 <link rel="stylesheet" href="asset/css/style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
 <!--font Awsome-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 
 <!-- include header part -->
-<?php require_once("app/include/header.php");?>
+<?php require_once("app/include/header.php"); ?>
+
 
 <?php include("app/include/message.php"); ?>
 
+<!-- search part -->
+<div class="search-container">
+  <form action="index.php" method="POST">
+    <input type="text" name="search-term" class="text-input" placeholder="Search...">
+    <button type="submit" class="search-button"><i class="fa fa-search"></i></button>
+  </form>
+</div>
+<!-- end of search part -->
 
 
 <!-- page wrapper -->
@@ -63,11 +77,12 @@ $MostViewedPosts = getMostNumberOfPublishedPost();
         <div class="post-wrapper">
 
 <!-- post slide section -->
+
  <?php foreach($AllPosts as $AllPost): ?>
         
     <div class="post">
 
-<img src="<?php echo 'asset/image/'. $AllPost['image']; ?> " alt="" class="slider-image">
+ <a href="single.php?title_id=<?php echo $AllPost['id'] .'&topic_id=' . $AllPost['topic_id'] ;?>"><img src="<?php echo 'asset/image/'. $AllPost['image']; ?> " alt="" class="slider-image"></a>  
 <div class="post-info">
 <h4><a href="single.php?title_id=<?php echo $AllPost['id'] .'&topic_id=' . $AllPost['topic_id'] ;?>"><?php echo $AllPost['title'] ?></a></h4>
 <i class="fa fa-user"><?php echo $AllPost['username'] ?></i>
@@ -82,90 +97,59 @@ $MostViewedPosts = getMostNumberOfPublishedPost();
  </div>
 
  </div>
-
 </div>
 
-<div class="content clearfix">
-    
-     <!--Recent post  -->
-    <div class="main-content">
 
-    <h1 class="recent-post-title"><?php echo $postsTitle ?></h1>
+	<div class="col-lg-12 col-md-12 text-center">
+					<h1 id="fh5co-logo"><a href="index.html"><?php echo $postsTitle ?></a></h1>
+		</div>
 
-   
+
+<br><br><br><br>
+
+<div class="container-fluid">
+<div class="row fh5co-post-entry">
+
+
 <?php foreach($posts as $post): ?>
+<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
+  <figure>
 
-    <div class="post">
-        <img src="<?php echo 'asset/image/'. $post['image']; ?>" alt="" class="post-image">
-    <div class="post-preview">
-        <h1><a href="single.php?title_id=<?php echo $post['id'] .'&topic_id=' . $post['topic_id'] ;?>"><?php echo $post['title'] ?> </a></h1>
-       <i class="fa fa-user "><?php echo $post['username'] ?></i>
-        <br><br>
-        <i class="fa calender"><?php echo date('F j,Y', strtotime($post['created_at'])); ?></i>
-        <p class="preview-text"> <?php echo html_entity_decode(substr($post['body'],0,100).'...' ); ?></p>
-
-    <a href="single.php?title_id=<?php echo $post['id'] .'&topic_id=' . $post['topic_id'] ;?>" class="btn btn-primary">Read More</a>
-    </div>
-    </div>
+    <a href="single.php?title_id=<?php echo $post['id'] .'&topic_id=' . $post['topic_id'] ;?>"><img src="<?php echo 'asset/image/'. $post['image']; ?>" alt="Image" class="img-responsive"></a>
+  </figure>
+  <h1  class="fh5co-article-title"><a href="single.php?title_id=<?php echo $post['id'] .'&topic_id=' . $post['topic_id'] ;?>"><?php echo $post['title'] ?> </a></h1>
+  <i class="fa fa-user "><?php echo $post['username'] ?></i>
+  <br><br>
+  
+  <span class="fh5co-meta fh5co-date">  <i class="fa calender"><?php echo date('F j,Y', strtotime($post['created_at'])); ?></i></span>
+</article>
 
 <?php endforeach; ?>
 
-    </div>
- <!--End of  Recent post  -->
 
 
-<!--sidebar -->
 
-<div class="sidebar">
-<div class="section search">
-    <h2 class="section-title">search</h2>
-<form action="index.php" method="POST">
+<div class="clearfix visible-lg-block visible-md-block visible-sm-block visible-xs-block"></div>
 
-<input type="text" name="search-term" class="text-input" placeholder="search...">
-</form>
+<div class="col-lg-12 col-md-12 text-center">
+					<h1 id="fh5co-logo"><a href="index.html">Most Viewed Post</a></h1>
 </div>
-
-<div class="section topics">
-    <h2 class="section-title">Topics</h2>
-    <ul>
-
-        <?php foreach($topics as $key => $topic): ?>
-    
-            <li ><a class="list_text"  href="<?php echo 'index.php?topic_id='. $topic['id'] . '&name=' . $topic['name'] ?>"> <?php echo $topic['name'] ?></a> </li>
-    
-    <?php endforeach; ?>
-
-    </ul>
-</div>
-
-    </div>
-<!--End of sidebar -->
-
-
-     <!--Most viewed post  -->
-     <div class="main-content">
-
-<h1 class="recent-post-title">Most viewed Posts</h1>
 
 <?php foreach($MostViewedPosts as $MostViewedPost): ?>
-
-<div class="post">
-    <img src="<?php echo 'asset/image/'. $MostViewedPost['image']; ?>" alt="" class="post-image">
-<div class="post-preview">
-    <h1><a href="single.php?title_id=<?php echo $MostViewedPost['id'] .'&topic_id=' . $MostViewedPost['topic_id'] ;?>"><?php echo $MostViewedPost['title'] ?> </a></h1>
-   <i class="fa fa-user"><?php echo $MostViewedPost['username'] ?></i>
-    <br><br>
-    <i class="fa calender"><?php echo date('F j,Y', strtotime($MostViewedPost['created_at'])); ?></i>
-    <p class="preview-text"> <?php echo html_entity_decode(substr($MostViewedPost['body'],0,100).'...' ); ?></p>
-
-<a href="single.php?title_id=<?php echo $post['id'] .'&topic_id=' . $MostViewedPost['topic_id'] ;?>" class="btn btn-primary">Read More</a>
-</div>
-</div>
+<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
+  <figure>
+    <a href="single.php?title_id=<?php echo $MostViewedPost['id'] .'&topic_id=' . $MostViewedPost['topic_id'] ;?>"><img src="<?php echo 'asset/image/'. $MostViewedPost['image']; ?>" alt="Image" class="img-responsive"></a>
+  </figure>
+  
+  <h1><a href="single.php?title_id=<?php echo $MostViewedPost['id'] .'&topic_id=' . $MostViewedPost['topic_id'] ;?>"><?php echo $MostViewedPost['title'] ?> </a></h1>
+  <i class="fa fa-user"><?php echo $MostViewedPost['username'] ?></i>
+  <span class="fh5co-meta fh5co-date"><?php echo date('F j,Y', strtotime($MostViewedPost['created_at'])); ?></span>
+</article>
 
 <?php endforeach; ?>
 
+
 </div>
-<!--End of Most viewed post  -->
 </div>
 
 <div class="cookie-banner" style="">
@@ -180,11 +164,12 @@ $MostViewedPosts = getMostNumberOfPublishedPost();
 </div>
 
 
-
 <!--start of footer part-->
 <?php include("app/include/footer.php"); ?>
 
 <!-- include footer part -->
+
+
 
 <!-- js library-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.slim.min.js" integrity="sha512-fYjSocDD6ctuQ1QGIo9+Nn9Oc4mfau2IiE8Ki1FyMV4OcESUt81FMqmhsZe9zWZ6g6NdczrEMAos1GlLLAipWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -228,6 +213,7 @@ function getCookie(cname) {
     if (c.indexOf(name) == 0) {
       return c.substring(name.length, c.length);
     }
+
   }
   return "";
 }
@@ -236,3 +222,4 @@ function getCookie(cname) {
 
 </body>
 </html>
+

@@ -5,6 +5,14 @@ $(document).ready(function(){
     });
  });
 
+ $(document).ready(function(){
+   $('.fh5co-offcanvas').on('click',function(){
+$('.nav').toggleClass('showing');
+$('.nav .un').toggleClass('showing');
+   });
+});
+
+
  
  $('.post-wrapper').slick({
     slidesToShow: 3,
@@ -16,6 +24,8 @@ $(document).ready(function(){
  
   })
 
+
+  
 
   
 

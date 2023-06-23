@@ -183,13 +183,28 @@ function  getMostNumberOfPublishedPost(){
     INNER JOIN user ON post.user_id = user.id 
     INNER JOIN view_count ON post.id = view_count.post_id
     WHERE post.published = ?
-    ORDER BY view_count.NumberOfViews DESC LIMIT 3;";
+    ORDER BY view_count.NumberOfViews DESC LIMIT 4;";
 
     $stmt = executeQuery2($sql , ['published' => 1] );
 $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 return $records;
 
 }
+
+function getPostTitleAndNumberOfView(){
+    global $conn;
+$sql = "SELECT post.*, view_count.NumberOfViews FROM Post
+INNER JOIN view_count ON post.id = view_count.post_id
+WHERE post.published = ?
+    ORDER BY view_count.NumberOfViews DESC LIMIT 5;";
+
+$stmt = executeQuery2($sql , ['published' => 1] );
+$records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+return $records;
+
+}
+
+
 
 function getNumberOfLikes( $post_id){
 
@@ -200,6 +215,21 @@ function getNumberOfLikes( $post_id){
 $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 return $records;
 }
+
+function getPostTitleAndNumberOfLikes(){
+    global $conn;
+$sql ="SELECT post.title, COUNT(like_table.post_id) as count FROM Post
+INNER JOIN like_table ON post.id = like_table.post_id
+WHERE post.published = ?
+ORDER BY count DESC LIMIT 5;";
+
+$stmt = executeQuery2($sql , ['published' => 1] );
+$records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+return $records;
+
+}
+
+
 
 function getNumberOfViews( $post_id){
 
@@ -256,5 +286,21 @@ $match ='%' . $term . '%';
 $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 return $records;
 }
+
+function NumberOfPosts(){
+    global $conn;
+$sql ="SELECT user.*, COUNT(post.user_id) as count FROM Post
+INNER JOIN user ON post.user_id = user.id
+WHERE post.published = ?
+ORDER BY count DESC LIMIT 5;";
+
+$stmt = executeQuery2($sql , ['published' => 1] );
+$records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+return $records;
+
+}
+
+
+
 
 ?>

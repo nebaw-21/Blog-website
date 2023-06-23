@@ -2,6 +2,7 @@
 <?php
  include('../Blog/app/controllers/users.php');
 
+ $topics = selectAll($topics);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +22,13 @@
 <i class="fa fa-bars menu-toggle"></i>
 
 <ul class="nav">
+<?php foreach($topics as $key => $topic): ?>
+    
+    <li ><a class="list_text"  href="<?php echo 'index.php?topic_id='. $topic['id'] . '&name=' . $topic['name'] ?>"> <?php echo $topic['name'] ?></a> </li>
+
+<?php endforeach; ?>
+
+
     <li><a href="index.php">Home</a></li>
     <li><a href="contactUs.php">Contact Us</a> </li>
 

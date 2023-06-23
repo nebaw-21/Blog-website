@@ -5,10 +5,12 @@ include("C:/xampp/htdocs/Blog/app/include/middleware.php");
 global $conn;
     $name_err = $email_err = $password_err = "";
     $name =  $email = $Password = $id = "";
+    $topics = 'topics';
 
 $table ='user';
 
 $admin_users = selectAll($table );
+
 
  function loginUser($user){
     $_SESSION['id']= $user['id'] ;

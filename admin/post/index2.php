@@ -67,6 +67,8 @@ session_start();
     <a href="index2.php" class="btn btn-primary">Manage post</a>
 </div>
 
+
+
 <h2 class=" text-center page-title">Manage posts</h2>
 <div class="container well">
  <div class="row">
